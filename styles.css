@@ -220,8 +220,8 @@ button {
   border-radius: 7px;
   background: rgba(230, 238, 236, 0.06);
   color: rgba(245, 244, 239, 0.52);
-  font-family: "Songti SC", "STSong", "SimSun", serif;
-  font-size: 14px;
+  font-family: inherit;
+  font-size: 11px;
   transition: background 180ms ease, color 180ms ease;
 }
 
@@ -447,15 +447,17 @@ button {
 }
 
 .seal span {
-  width: 34px;
+  min-width: 34px;
   height: 34px;
   display: grid;
   place-items: center;
+  padding: 0 9px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 7px;
   color: rgba(245, 244, 239, 0.46);
-  font-family: "Songti SC", "STSong", "SimSun", serif;
-  font-size: 13px;
+  font-family: inherit;
+  font-size: 11px;
+  white-space: nowrap;
   transition: background 180ms ease, color 180ms ease;
 }
 

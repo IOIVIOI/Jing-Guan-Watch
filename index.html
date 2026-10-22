@@ -9,7 +9,7 @@
 </head>
 <body>
   <main class="experience">
-    <div class="watch-art" id="watchArt" role="img" aria-label="月夜轻舟禅意智能手表">
+    <div class="watch-art" id="watchArt" role="img" aria-label="AI 健康手表主界面">
       <div class="screen" id="screen" data-mode="home">
         <div class="face-art" aria-hidden="true"></div>
         <div class="screen-tint" aria-hidden="true"></div>
@@ -23,7 +23,7 @@
             <button class="glass-icon-button" type="button" data-back aria-label="返回主界面">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             </button>
-            <span class="glass-kicker">今日观照</span>
+            <span class="glass-kicker">健康数据</span>
             <button class="glass-icon-button" type="button" data-voice-start aria-label="语音操作">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
             </button>
@@ -31,22 +31,22 @@
 
           <div class="data-content">
             <div class="metric-tabs" role="tablist" aria-label="健康指标">
-              <button type="button" role="tab" data-metric="sleep">眠</button>
-              <button type="button" role="tab" data-metric="deep">深</button>
-              <button type="button" role="tab" data-metric="heart">脉</button>
-              <button type="button" role="tab" data-metric="steps">行</button>
-              <button type="button" role="tab" data-metric="active">动</button>
+              <button type="button" role="tab" data-metric="sleep">睡眠</button>
+              <button type="button" role="tab" data-metric="deep">深睡</button>
+              <button type="button" role="tab" data-metric="heart">心率</button>
+              <button type="button" role="tab" data-metric="steps">步数</button>
+              <button type="button" role="tab" data-metric="active">活动</button>
             </div>
 
             <div class="metric-hero">
               <span class="metric-label" id="metricLabel">睡眠时长</span>
               <div class="metric-value"><strong id="metricValue">6.2</strong><span id="metricUnit">小时</span></div>
-              <p class="metric-insight" id="metricInsight">近日安眠稍浅，宜早一些歇息。</p>
+              <p class="metric-insight" id="metricInsight">近7天平均睡眠略少，建议保持规律作息。</p>
             </div>
 
             <div class="glass-panel chart-panel">
               <div class="panel-row">
-                <span class="panel-title">一息之间</span>
+                <span class="panel-title">近7天趋势</span>
                 <div class="range-tabs" role="group" aria-label="时间范围">
                   <button type="button" data-range="7">7日</button>
                   <button type="button" data-range="30">30日</button>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="glass-panel detail-panel">
-              <span class="panel-title">近况</span>
+              <span class="panel-title">数据说明</span>
               <p id="detailText">近七日平均睡眠 6.2 小时，较上周少 0.8 小时。</p>
             </div>
           </div>
@@ -68,7 +68,7 @@
             <button class="glass-icon-button" type="button" data-back aria-label="返回主界面">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             </button>
-            <span class="glass-kicker">随心而荐</span>
+            <span class="glass-kicker">推荐设置</span>
             <button class="glass-icon-button" type="button" data-voice-start aria-label="语音操作">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
             </button>
@@ -79,7 +79,7 @@
               <div class="setting-line">
                 <div>
                   <strong class="setting-title">智能推荐</strong>
-                  <span class="setting-note">只在对你有用时出现</span>
+                  <span class="setting-note">可随时开启或关闭</span>
                 </div>
                 <label class="toggle">
                   <input type="checkbox" id="recEnabled" aria-label="启用智能推荐">
@@ -89,19 +89,19 @@
             </div>
 
             <div class="glass-panel">
-              <span class="panel-title">可推荐</span>
+              <span class="panel-title">推荐类别</span>
               <div class="seal-grid">
-                <label class="seal"><input type="checkbox" data-cat="运动"><span>行</span></label>
-                <label class="seal"><input type="checkbox" data-cat="睡眠"><span>眠</span></label>
-                <label class="seal"><input type="checkbox" data-cat="心率健康"><span>脉</span></label>
-                <label class="seal"><input type="checkbox" data-cat="用药提醒"><span>药</span></label>
-                <label class="seal"><input type="checkbox" data-cat="社交"><span>聚</span></label>
+                <label class="seal"><input type="checkbox" data-cat="运动"><span>运动</span></label>
+                <label class="seal"><input type="checkbox" data-cat="睡眠"><span>睡眠</span></label>
+                <label class="seal"><input type="checkbox" data-cat="心率健康"><span>心率</span></label>
+                <label class="seal"><input type="checkbox" data-cat="用药提醒"><span>用药</span></label>
+                <label class="seal"><input type="checkbox" data-cat="社交"><span>社交</span></label>
               </div>
             </div>
 
             <div class="glass-panel compact-panel">
               <div class="setting-line">
-                <div><strong class="setting-title">每日至多</strong><span class="setting-note">少而恰当</span></div>
+                <div><strong class="setting-title">每天最多</strong><span class="setting-note">限制每日推荐数量</span></div>
                 <div class="stepper">
                   <button type="button" id="freqMinus" aria-label="减少推荐条数">−</button>
                   <span><b id="freqValue">3</b> 条</span>
@@ -112,16 +112,16 @@
 
             <div class="glass-panel compact-panel">
               <div class="setting-line stack-on-small">
-                <div><strong class="setting-title">静默时段</strong><span class="setting-note">此时不扰</span></div>
+                <div><strong class="setting-title">安静时段</strong><span class="setting-note">该时段不发送推荐</span></div>
                 <div class="quiet-time">
-                  <select id="quietStart" aria-label="静默开始时间"></select>
+                  <select id="quietStart" aria-label="安静时段开始时间"></select>
                   <span>至</span>
-                  <select id="quietEnd" aria-label="静默结束时间"></select>
+                  <select id="quietEnd" aria-label="安静时段结束时间"></select>
                 </div>
               </div>
             </div>
 
-            <button type="button" class="ghost-button" id="resetSettings">恢复初始</button>
+            <button type="button" class="ghost-button" id="resetSettings">恢复默认</button>
           </div>
         </section>
 
@@ -130,17 +130,17 @@
             <button class="glass-icon-button" type="button" data-back aria-label="返回主界面">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             </button>
-            <span class="glass-kicker">日常照料</span>
+            <span class="glass-kicker">我的提醒</span>
             <button class="glass-icon-button" type="button" data-voice-start aria-label="语音操作">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
             </button>
           </header>
           <div class="reminders-content">
-            <p class="screen-lede">一份轻轻的提醒，<br>不催促，也不遗漏。</p>
+            <p class="screen-lede">按需要开启提醒，<br>随时可以关闭。</p>
             <div class="reminder-list" id="reminderList"></div>
             <div class="empty-state" id="reminderEmpty" hidden>
               <span class="empty-seal">无</span>
-              <p>此刻没有开启的提醒。</p>
+              <p>当前没有开启的提醒。</p>
             </div>
           </div>
         </section>
@@ -160,7 +160,7 @@
 
           <div class="command-sheet" id="commandSheet" hidden>
             <section class="command-group">
-              <span class="command-label">看看身体</span>
+              <span class="command-label">查看健康</span>
               <div class="command-options">
                 <button type="button" data-demo-command="看看近30天睡眠">近30天睡眠</button>
                 <button type="button" data-demo-command="深睡怎么样">深睡比例</button>
@@ -174,11 +174,11 @@
                 <button type="button" data-demo-command="关闭所有推荐">关闭推荐</button>
                 <button type="button" data-demo-command="只推荐睡眠">只推荐睡眠</button>
                 <button type="button" data-demo-command="每天最多一条">每天一条</button>
-                <button type="button" data-demo-command="静默时段21点到7点">静默时段</button>
+                <button type="button" data-demo-command="安静时段21点到7点">安静时段</button>
               </div>
             </section>
             <section class="command-group">
-              <span class="command-label">照料日常</span>
+              <span class="command-label">管理提醒</span>
               <div class="command-options">
                 <button type="button" data-demo-command="设置久坐提醒">久坐提醒</button>
                 <button type="button" data-demo-command="设置用药提醒">用药提醒</button>

@@ -38,12 +38,12 @@
     water: {
       glyph: '水',
       title: '饮水提醒',
-      detail: '每两小时，轻提醒一次补充水分。'
+      detail: '每两小时提醒补充水分。'
     },
     sleepRelax: {
-      glyph: '息',
+      glyph: '松',
       title: '睡前放松',
-      detail: '每晚九点，提醒留出十分钟静心。'
+      detail: '每晚21:00提醒进行10分钟放松。'
     },
     heartHigh: {
       glyph: '脉',
@@ -58,7 +58,7 @@
     social: {
       glyph: '聚',
       title: '社交提醒',
-      detail: '每周三下午，提醒与朋友散步。'
+      detail: '每周三下午提醒与朋友散步。'
     }
   };
 
@@ -68,8 +68,8 @@
       value: '6.2',
       unit: '小时',
       key: 'sleep',
-      insight: '近日安眠稍浅，宜早一些歇息。',
-      detail: '近七日平均睡眠 6.2 小时，较上周少 0.8 小时。深睡比例有所下降。',
+      insight: '近7天平均睡眠略少，建议保持规律作息。',
+      detail: '近7天平均睡眠 6.2 小时，较上周少 0.8 小时。深睡比例有所下降。',
       toast: '已展开近七日睡眠'
     },
     deep: {
@@ -77,8 +77,8 @@
       value: '15',
       unit: '%',
       key: 'deep',
-      insight: '深睡稍显不足，睡前宜少饮浓茶。',
-      detail: '近七日深睡比例平均 15%，较上周下降 4 个百分点。',
+      insight: '近7天深睡比例偏低，建议减少睡前咖啡因摄入。',
+      detail: '近7天深睡比例平均 15%，较上周下降 4 个百分点。',
       toast: '已展开近七日深睡'
     },
     heart: {
@@ -86,8 +86,8 @@
       value: '68',
       unit: '次/分',
       key: 'nightHR',
-      insight: '夜间心率略高，可留意今日的劳累与饮茶。',
-      detail: '近七日夜间静息心率平均 68 次/分，较上周高 6 次/分。',
+      insight: '夜间心率略高，建议留意当天活动量和咖啡因摄入。',
+      detail: '近7天夜间静息心率平均 68 次/分，较上周高 6 次/分。',
       toast: '已展开近七日心率'
     },
     steps: {
@@ -95,8 +95,8 @@
       value: '6,842',
       unit: '步',
       key: 'steps',
-      insight: '今日已行八千步之近，午后宜再舒展片刻。',
-      detail: '近七日平均每日约 6,060 步，今日目标已完成 86%，午后久坐稍长。',
+      insight: '今日步数目标已完成86%，下午可适当活动。',
+      detail: '近7天平均每日约 6,060 步，今日目标已完成 86%，午后久坐时间较长。',
       toast: '已展开近七日步数'
     },
     active: {
@@ -104,8 +104,8 @@
       value: '42',
       unit: '分钟',
       key: 'active',
-      insight: '今日已活动四十二分钟，节奏从容。',
-      detail: '今日活跃 42 分钟，近七日平均约 35 分钟，午后可再散步十分钟。',
+      insight: '今日已活动42分钟，可继续保持。',
+      detail: '今日活跃 42 分钟，近7天平均约 35 分钟，下午可再活动10分钟。',
       toast: '已展开近七日活跃时长'
     }
   };
@@ -389,7 +389,7 @@
     commandSheet.hidden = true;
     assistantLayer.setAttribute('data-phase', 'thinking');
     assistantStage.setAttribute('data-state', 'thinking');
-    assistantTitle.textContent = '稍候';
+    assistantTitle.textContent = '处理中';
     assistantSubtitle.textContent = '正在理解「' + command + '」';
     accessibleStatus.textContent = '正在理解指令';
     await wait(850);
@@ -615,14 +615,14 @@
         saveSettings();
         showScreen('settings');
         renderSettings();
-        showToast('静默时段已设为 ' + intent.start + ' 至 ' + intent.end);
+        showToast('安静时段已设为 ' + intent.start + ' 至 ' + intent.end);
         break;
       case 'reset':
         state.settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
         saveSettings();
         showScreen('settings');
         renderSettings();
-        showToast('推荐设置已恢复初始');
+        showToast('已恢复默认设置');
         break;
       case 'reminder':
         state.reminders[intent.key] = intent.enabled;
@@ -652,25 +652,25 @@
         showCommandSheet();
         break;
       case 'where':
-        showAssistantReply('此时', intent.message, 2400);
+        showAssistantReply('当前界面', intent.message, 2400);
         break;
       case 'summary':
         showAssistantReply(
-          '今日一览',
-          '昨夜安眠 6.2 小时，夜间心率 68 次/分；今日已行 6,842 步，活跃 42 分钟。',
+          '今日健康概览',
+          '昨夜睡眠 6.2 小时，夜间心率 68 次/分；今日步数 6,842 步，活跃 42 分钟。',
           3800
         );
         break;
       case 'datetime':
         var now = new Date();
         if (intent.mode === 'time') {
-          showAssistantReply('此刻', now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }), 2200);
+          showAssistantReply('当前时间', now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }), 2200);
         } else {
-          showAssistantReply('今日', now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }), 2800);
+          showAssistantReply('当前日期', now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }), 2800);
         }
         break;
       default:
-        showAssistantReply('未听明白', '按侧键再说一次，或说“你能做什么”查看示例。', 3200);
+        showAssistantReply('未识别指令', '按侧键再说一次，或说“你能做什么”查看示例。', 3200);
     }
   }
 
@@ -782,20 +782,20 @@
   $('#quietStart').addEventListener('change', function (event) {
     state.settings.quietStart = event.target.value;
     saveSettings();
-    showToast('静默时段已更新');
+    showToast('安静时段已更新');
   });
 
   $('#quietEnd').addEventListener('change', function (event) {
     state.settings.quietEnd = event.target.value;
     saveSettings();
-    showToast('静默时段已更新');
+    showToast('安静时段已更新');
   });
 
   $('#resetSettings').addEventListener('click', function () {
     state.settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
     saveSettings();
     renderSettings();
-    showToast('推荐设置已恢复初始');
+    showToast('已恢复默认设置');
   });
 
   fillQuietOptions();
