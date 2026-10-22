@@ -64,6 +64,7 @@
 
   var METRICS = {
     sleep: {
+      title: '睡眠数据',
       label: '睡眠时长',
       value: '6.2',
       unit: '小时',
@@ -73,6 +74,7 @@
       toast: '已展开近七日睡眠'
     },
     deep: {
+      title: '深睡数据',
       label: '深睡比例',
       value: '15',
       unit: '%',
@@ -82,6 +84,7 @@
       toast: '已展开近七日深睡'
     },
     heart: {
+      title: '心率数据',
       label: '夜间静息心率',
       value: '68',
       unit: '次/分',
@@ -91,6 +94,7 @@
       toast: '已展开近七日心率'
     },
     steps: {
+      title: '步数数据',
       label: '每日步数',
       value: '6,842',
       unit: '步',
@@ -100,6 +104,7 @@
       toast: '已展开近七日步数'
     },
     active: {
+      title: '活动数据',
       label: '活跃时长',
       value: '42',
       unit: '分钟',
@@ -222,13 +227,10 @@
     $('#metricLabel').textContent = metric.label;
     $('#metricValue').textContent = metric.value;
     $('#metricUnit').textContent = metric.unit;
+    $('#healthScreenTitle').textContent = metric.title;
     $('#metricInsight').textContent = metric.insight;
     $('#detailText').textContent = metric.detail;
-
-    $$('[data-metric]').forEach(function (button) {
-      button.classList.toggle('is-active', button.getAttribute('data-metric') === state.metric);
-      button.setAttribute('aria-selected', button.getAttribute('data-metric') === state.metric ? 'true' : 'false');
-    });
+    screen.setAttribute('data-metric-view', state.metric);
     $$('[data-range]').forEach(function (button) {
       button.classList.toggle('is-active', Number(button.getAttribute('data-range')) === state.range);
       button.setAttribute('aria-pressed', Number(button.getAttribute('data-range')) === state.range ? 'true' : 'false');
@@ -546,7 +548,7 @@
     var range = /30天|三十天|一个月/.test(text) ? 30 : 7;
     var compare = /比上周|较上周|这周比/.test(text);
     if (/状态怎么样|健康总结|今天怎么样|本周总结|一周总结|整体状态/.test(text)) {
-      return { type: 'summary' };
+      return { type: 'choose-metric' };
     }
     if (/深睡|深度睡眠/.test(text)) return { type: 'health', metric: 'deep', range: range, compare: compare };
     if (/睡眠|睡得好|睡不好|安眠/.test(text)) return { type: 'health', metric: 'sleep', range: range, compare: compare };
@@ -665,12 +667,8 @@
       case 'where':
         showAssistantReply('当前界面', intent.message, 2400);
         break;
-      case 'summary':
-        showAssistantReply(
-          '今日健康概览',
-          '昨夜睡眠 6.2 小时，夜间心率 68 次/分；今日步数 6,842 步，活跃 42 分钟。',
-          3800
-        );
+      case 'choose-metric':
+        showAssistantReply('请选择一项数据', '可以说：看看睡眠、心率、步数或活动。', 3200);
         break;
       case 'datetime':
         var now = new Date();
@@ -743,13 +741,6 @@
     var back = event.target.closest('[data-back]');
     if (back) {
       showScreen('home');
-      return;
-    }
-
-    var metricButton = event.target.closest('[data-metric]');
-    if (metricButton) {
-      state.metric = metricButton.getAttribute('data-metric');
-      renderHealth();
       return;
     }
 
