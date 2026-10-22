@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eeeae1">
+  <title>静观 · AI Agent 健康手表</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="experience">
+    <div class="watch-art" id="watchArt" role="img" aria-label="月夜轻舟禅意智能手表">
+      <div class="screen" id="screen" data-mode="home">
+        <div class="face-art" aria-hidden="true"></div>
+        <div class="screen-tint" aria-hidden="true"></div>
+
+        <section class="app-screen app-home is-active" data-screen="home" aria-label="主界面">
+          <h1 class="sr-only">静观健康手表主界面</h1>
+        </section>
+
+        <section class="app-screen app-data" data-screen="health" aria-label="健康数据" hidden>
+          <header class="glass-header">
+            <button class="glass-icon-button" type="button" data-back aria-label="返回主界面">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="glass-kicker">今日观照</span>
+            <button class="glass-icon-button" type="button" data-voice-start aria-label="语音操作">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
+            </button>
+          </header>
+
+          <div class="data-content">
+            <div class="metric-tabs" role="tablist" aria-label="健康指标">
+              <button type="button" role="tab" data-metric="sleep">眠</button>
+              <button type="button" role="tab" data-metric="deep">深</button>
+              <button type="button" role="tab" data-metric="heart">脉</button>
+              <button type="button" role="tab" data-metric="steps">行</button>
+              <button type="button" role="tab" data-metric="active">动</button>
+            </div>
+
+            <div class="metric-hero">
+              <span class="metric-label" id="metricLabel">睡眠时长</span>
+              <div class="metric-value"><strong id="metricValue">6.2</strong><span id="metricUnit">小时</span></div>
+              <p class="metric-insight" id="metricInsight">近日安眠稍浅，宜早一些歇息。</p>
+            </div>
+
+            <div class="glass-panel chart-panel">
+              <div class="panel-row">
+                <span class="panel-title">一息之间</span>
+                <div class="range-tabs" role="group" aria-label="时间范围">
+                  <button type="button" data-range="7">7日</button>
+                  <button type="button" data-range="30">30日</button>
+                </div>
+              </div>
+              <div class="mini-chart" id="chart" role="img" aria-label="健康趋势图"></div>
+              <div class="chart-axis"><span id="chartStart">10/16</span><span id="chartEnd">10/22</span></div>
+            </div>
+
+            <div class="glass-panel detail-panel">
+              <span class="panel-title">近况</span>
+              <p id="detailText">近七日平均睡眠 6.2 小时，较上周少 0.8 小时。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="app-screen app-settings" data-screen="settings" aria-label="推荐设置" hidden>
+          <header class="glass-header">
+            <button class="glass-icon-button" type="button" data-back aria-label="返回主界面">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="glass-kicker">随心而荐</span>
+            <button class="glass-icon-button" type="button" data-voice-start aria-label="语音操作">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
+            </button>
+          </header>
+
+          <div class="settings-content">
+            <div class="glass-panel">
+              <div class="setting-line">
+                <div>
+                  <strong class="setting-title">智能推荐</strong>
+                  <span class="setting-note">只在对你有用时出现</span>
+                </div>
+                <label class="toggle">
+                  <input type="checkbox" id="recEnabled" aria-label="启用智能推荐">
+                  <span class="toggle-track"><span></span></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="glass-panel">
+              <span class="panel-title">可推荐</span>
+              <div class="seal-grid">
+                <label class="seal"><input type="checkbox" data-cat="运动"><span>行</span></label>
+                <label class="seal"><input type="checkbox" data-cat="睡眠"><span>眠</span></label>
+                <label class="seal"><input type="checkbox" data-cat="心率健康"><span>脉</span></label>
+                <label class="seal"><input type="checkbox" data-cat="用药提醒"><span>药</span></label>
+                <label class="seal"><input type="checkbox" data-cat="社交"><span>聚</span></label>
+              </div>
+            </div>
+
+            <div class="glass-panel compact-panel">
+              <div class="setting-line">
+                <div><strong class="setting-title">每日至多</strong><span class="setting-note">少而恰当</span></div>
+                <div class="stepper">
+                  <button type="button" id="freqMinus" aria-label="减少推荐条数">−</button>
+                  <span><b id="freqValue">3</b> 条</span>
+                  <button type="button" id="freqPlus" aria-label="增加推荐条数">＋</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-panel compact-panel">
+              <div class="setting-line stack-on-small">
+                <div><strong class="setting-title">静默时段</strong><span class="setting-note">此时不扰</span></div>
+                <div class="quiet-time">
+                  <select id="quietStart" aria-label="静默开始时间"></select>
+                  <span>至</span>
+                  <select id="quietEnd" aria-label="静默结束时间"></select>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="ghost-button" id="resetSettings">恢复初始</button>
+          </div>
+        </section>
+
+        <section class="app-screen app-reminders" data-screen="reminders" aria-label="我的提醒" hidden>
+          <header class="glass-header">
+            <button class="glass-icon-button" type="button" data-back aria-label="返回主界面">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="glass-kicker">日常照料</span>
+            <button class="glass-icon-button" type="button" data-voice-start aria-label="语音操作">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
+            </button>
+          </header>
+          <div class="reminders-content">
+            <p class="screen-lede">一份轻轻的提醒，<br>不催促，也不遗漏。</p>
+            <div class="reminder-list" id="reminderList"></div>
+            <div class="empty-state" id="reminderEmpty" hidden>
+              <span class="empty-seal">无</span>
+              <p>此刻没有开启的提醒。</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="assistant-layer" id="assistantLayer" hidden>
+          <div class="assistant-stage" id="assistantStage" data-state="listening">
+            <div class="voice-visual" aria-hidden="true">
+              <i class="voice-ring ring-a"></i>
+              <i class="voice-ring ring-b"></i>
+              <div class="voice-core">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <p class="assistant-title" id="assistantTitle">正在聆听</p>
+            <p class="assistant-subtitle" id="assistantSubtitle">说完再按一次侧键</p>
+          </div>
+
+          <div class="command-sheet" id="commandSheet" hidden>
+            <section class="command-group">
+              <span class="command-label">看看身体</span>
+              <div class="command-options">
+                <button type="button" data-demo-command="看看近30天睡眠">近30天睡眠</button>
+                <button type="button" data-demo-command="深睡怎么样">深睡比例</button>
+                <button type="button" data-demo-command="今天走了多少步">今日步数</button>
+                <button type="button" data-demo-command="我这周状态怎么样">本周状态</button>
+              </div>
+            </section>
+            <section class="command-group">
+              <span class="command-label">调整推荐</span>
+              <div class="command-options">
+                <button type="button" data-demo-command="关闭所有推荐">关闭推荐</button>
+                <button type="button" data-demo-command="只推荐睡眠">只推荐睡眠</button>
+                <button type="button" data-demo-command="每天最多一条">每天一条</button>
+                <button type="button" data-demo-command="静默时段21点到7点">静默时段</button>
+              </div>
+            </section>
+            <section class="command-group">
+              <span class="command-label">照料日常</span>
+              <div class="command-options">
+                <button type="button" data-demo-command="设置久坐提醒">久坐提醒</button>
+                <button type="button" data-demo-command="设置用药提醒">用药提醒</button>
+                <button type="button" data-demo-command="我的提醒">我的提醒</button>
+                <button type="button" data-demo-command="记录血压 128/82">记录血压</button>
+              </div>
+            </section>
+          </div>
+
+          <form class="voice-input-wrap" id="voiceForm">
+            <input id="voiceCommand" type="text" autocomplete="off" aria-label="输入演示语音指令" placeholder="也可在此输入演示指令">
+            <button type="submit" aria-label="结束聆听并执行">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="screen-toast" id="screenToast" role="status" aria-live="polite" hidden></div>
+        <div class="execution-ripple" id="executionRipple" aria-hidden="true"></div>
+      </div>
+
+      <button class="side-key-hit" id="voiceKey" type="button" title="点击侧键开始或结束语音指令" aria-label="音频 AI 助手按键，点击开始或结束语音指令">
+        <span class="key-indicator"></span>
+      </button>
+    </div>
+  </main>
+
+  <div class="sr-only" aria-live="polite" id="accessibleStatus"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
