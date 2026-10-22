@@ -304,9 +304,8 @@
     voiceTip.hidden = true;
   }
 
-  function showVoiceTip(compact) {
+  function showVoiceTip() {
     voiceTip.hidden = false;
-    voiceTip.classList.toggle('is-compact', Boolean(compact));
   }
 
   function startAssistant() {
