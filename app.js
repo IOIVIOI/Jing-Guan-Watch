@@ -126,6 +126,7 @@
 
   var screen = $('#screen');
   var voiceKey = $('#voiceKey');
+  var voiceTip = $('#voiceTip');
   var assistantLayer = $('#assistantLayer');
   var assistantStage = $('#assistantStage');
   var assistantTitle = $('#assistantTitle');
@@ -299,6 +300,15 @@
     $('#quietEnd').innerHTML = options.join('');
   }
 
+  function hideVoiceTip() {
+    voiceTip.hidden = true;
+  }
+
+  function showVoiceTip(compact) {
+    voiceTip.hidden = false;
+    voiceTip.classList.toggle('is-compact', Boolean(compact));
+  }
+
   function startAssistant() {
     if (state.processing) return;
     if (state.listening) {
@@ -310,6 +320,7 @@
     state.listening = true;
     state.finalTranscript = '';
     voiceCommand.value = '';
+    hideVoiceTip();
     assistantLayer.hidden = false;
     commandSheet.hidden = true;
     assistantLayer.setAttribute('data-phase', 'listening');
@@ -406,6 +417,7 @@
     state.processing = false;
     voiceKey.classList.remove('is-listening');
     stopRecognition();
+    showVoiceTip(true);
   }
 
   function showAssistantReply(title, message, duration) {
@@ -672,9 +684,16 @@
       default:
         showAssistantReply('未识别指令', '按侧键再说一次，或说“你能做什么”查看示例。', 3200);
     }
+    if (assistantLayer.hidden) {
+      showVoiceTip(true);
+    }
   }
 
   voiceKey.addEventListener('click', function () {
+    startAssistant();
+  });
+
+  voiceTip.addEventListener('click', function () {
     startAssistant();
   });
 
@@ -803,4 +822,5 @@
   renderHealth();
   renderReminders();
   showScreen('home');
+  showVoiceTip(false);
 })();
